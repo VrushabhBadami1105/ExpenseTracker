@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home - Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <div id="auth-buttons" class="auth-buttons"></div>
+    </header>
+    <div class="container">
+        <h1>Expense Tracker</h1>
+        <h3>Current Balance: ₹<span id="current-balance-input" class="large-input" contenteditable="true" role="textbox" aria-label="Current Balance" tabindex="0">0.00</span></h3>
+
+        <!-- Removed date filter and monthly summary as per user request -->
+        <button id="add-transaction-btn" title="Add Transaction">+</button>
+        <div id="grouped-transactions-container">
+            <!-- Grouped transactions tables will be rendered here -->
+        </div>
+        <!-- Existing single transactions table hidden -->
+        <table id="transactions-table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Credit/Debit</th>
+                    <th>Amount (₹)</th>
+                    <th>Remaining Amount (₹)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Transactions will be added here -->
+            </tbody>
+        </table>
+
+        <!-- Removed monthly summary from home page as per user request -->
+
+        <button id="view-chart-btn" onclick="window.location.href='chart.html'">View Expense Chart</button>
+    </div>
+
+    <!-- Modal for adding transaction -->
+    <div id="transaction-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>Add Transaction</h2>
+            <form id="transaction-form">
+                <div class="form-control">
+                    <label for="transaction-description">Description</label>
+                    <input type="text" id="transaction-description" required />
+                </div>
+                <!-- Removed category select input as per user request -->
+                <div class="form-control">
+                    <label for="transaction-type">Credit/Debit</label>
+                    <select id="transaction-type" required>
+                        <option value="credit">Credit</option>
+                        <option value="debit">Debit</option>
+                    </select>
+                </div>
+                <div class="form-control">
+                    <label for="transaction-date">Date</label>
+                    <input type="date" id="transaction-date" required />
+                </div>
+                <div class="form-control">
+                    <label for="transaction-amount">Amount (₹)</label>
+                    <input type="number" id="transaction-amount" min="0.01" step="0.01" required />
+                </div>
+                <button type="submit">Add</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign Up - Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <div class="container auth-container">
+        <h1>Sign Up</h1>
+        <form id="signup-form">
+            <div class="form-control">
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" required />
+            </div>
+            <div class="form-control">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" required />
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('signup-username').value.trim();
+            const password = document.getElementById('signup-password').value;
+
+            if (!username || !password) {
+                alert('Please enter username and password.');
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem('users') || '{}');
+            if (users[username]) {
+                alert('Username already exists. Please choose another.');
+                return;
+            }
+
+            users[username] = { password };
+            localStorage.setItem('users', JSON.stringify(users));
+            alert('Account created successfully. Please login.');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
